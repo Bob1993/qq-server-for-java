@@ -9,6 +9,16 @@ public class JdbcTemplet {
 	private Connection conn= null;
 	private PreparedStatement ps= null;
 	private ResultSet rs= null;
+	
+	static{//建表操作
+		try {
+			PreparedStatement ps= JDBCUtil.getConnection().prepareStatement("create table users (id int(10) primary key auto_increment, count varchar(30), psd varchar(30))");
+			ps.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void update(String sql, Object...args)//增删改模板
 	{	
 		try {
